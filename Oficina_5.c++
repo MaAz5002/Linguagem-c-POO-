@@ -1,30 +1,25 @@
 #include <iostream>
-#include <iomanip>
-#include <cmath>
-
 using namespace std;
 
 int main(){
-    
-    float valorCompra, resultadoF;
-    int prestacao;
+    int a,b,x;
 
-    cout << "Qual o valor a vista da compra?";
-    cin >> valorCompra;
+    cout << "Insira um valor inteiro: ";
+    cin >> a;
 
-    cout << "A prestação sera de 2 ou 3 vezes?(2)(3)";
-    cin >> prestacao;
+    cout << "Insira o segundo valor inteiro: ";
+    cin >> b;
 
-    if (prestacao == 2)
-    {
-        resultadoF = valorCompra +(valorCompra * 0.1);
-        cout << "O valor final da compra é " << fixed << setprecision(2) << resultadoF;
-    }else if (prestacao == 3)
-    {
-        resultadoF = valorCompra +(valorCompra*0.2);
-        cout << "O valor final da compra é " << fixed << setprecision(2) << resultadoF;
-    }
+    x = a;
+    a = b;
+    b = x;
     
-    return 0;
-    
+
+    cout << "O valor inicial de A é "<<" "<< x << " \n";
+    cout << "E o valor de B é "<< " "<< a << "\n";
+    cout << "O valor final de A é "<< " "<< x <<"\n"; 
+    cout << "O valor final de B é "<< " "<< b <<"\n"; 
+
+
+
 }
