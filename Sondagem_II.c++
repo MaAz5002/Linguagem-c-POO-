@@ -2,6 +2,8 @@
 //bibliotecas para converter string maiuscula e minuscula
 // #include <algorithm>
 // #include <cctype>
+#include <iomanip>
+#include<cmath>
 using namespace std;
 
 struct Funcionario{
@@ -39,7 +41,7 @@ int main(){
     for (int i = 0; i < cont; i++){
         cout << "Nome: " << fun[i].nome << "\n";
         cout << "Cargo: " << fun[i].cargo<< "\n";
-        cout << "Salário: " << fun[i].salario<< "\n";
+        cout << "Salário: " <<fixed << setprecision(2) << fun[i].salario<< "\n";
 
     }
 
@@ -58,7 +60,7 @@ int main(){
         salarioIn += fun[i].salario;
     }
     
-    cout << "\nO custo total anterior ao aumento"<< salarioIn <<endl;
+    cout << "\nO custo total anterior ao aumento"<< fixed << setprecision(2) << salarioIn <<endl;
     cout << "Custo total após o aumento: R$ " << salarioF << endl;
     
 
