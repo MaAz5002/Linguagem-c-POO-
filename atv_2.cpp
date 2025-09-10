@@ -59,7 +59,7 @@ bool buscarPorCpf(Cliente c[], int total,string numCpf){
         if (numCpf == c[j].cpf){
            cout << "\n DADOS ENCONTRADOS \n ";
 
-            cout << "\n     CODIGO:   " << +1 << endl;
+            cout << "\n     CODIGO:   " << j+1 << endl;
             cout << "\nNome ...........: "<< c[j].nome << endl;
             cout << "\nEmail ...........: "<< c[j].email<< endl;
             cout << "\nCPF ...........: "<< c[j].cpf << endl;
@@ -126,5 +126,6 @@ int main(){
     while (opc != 4);
     
     
+
 
 }
