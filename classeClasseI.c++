@@ -1,49 +1,31 @@
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <clocale>
 using namespace std;
-
-int cont=0;
-class Cliente{
-    private:
-        string nome;
-        string email;
-        string cpf;
-
-    public:
-        void set_nome(string n){nome = n;}
-        string get_n
-        ome(){return nome;}
-        void set_email(string e){email = e;}
-        string get_email(){return email;}
-        void set_cpf(string cpf){this->cpf = cpf;}
-        string get_cpf(){return cpf;}
-
-        //exibe os clientes(metodo exibirClientes)
-        bool validarCpf(string cpf);
-        void print(int indice);//declaração da função
-        Cliente cadastrarCliente();//declaração da função
-        bool buscarPorCpf(Cliente c[], int total);
-        void exibirCliente(Cliente cadastro[]);
-
+ 
+struct Cliente{
+    string nome;
+    string email;
+    string cpf;
 };
 
-//valida o cpf
-bool Cliente::validarCpf(string cpf){
-    // se for diferente de 11 retorna false
+int i = 0, cont = 0;
+
+//verifica se o tamnho do cpf é valido
+bool validarCpf(string cpf){
+
    if(cpf.size() != 11){
     return false;
-    // se for igual de 11 retorna false
    }else{
     return true;
    }
-}
-
-void Cliente::print(int indice){
-    cout << "\nCodigo ...........: "<< indice;
-    cout << "\nNome ...........: "<< nome<< endl;
+   
 }
 
 
-Cliente Cliente::cadastrarCliente(){
+//função que sera chamada para entrada de dados
+Cliente cadastrarCliente(){
     Cliente c;
     cout << "\n Sistema Cadastrar Clientes "<< endl;
     cout << "Informe o nome: " << endl;
@@ -59,17 +41,21 @@ Cliente Cliente::cadastrarCliente(){
         }
         //enquanto a negação for verdadeira
     } while (!validarCpf(c.cpf));
+    
+    
+
+    
 
     cont++;
 
     return c;
-    
+
 }
 
-bool buscarPorCpf(Cliente c[],int total){
+bool buscarPorCpf(Cliente c[], int total,string numCpf){
 
-    for (int j = 0; j < 10; j++){
-        if (numCpf == c[j].get_cpf){
+    for (int j = 0; j < total; j++){
+        if (numCpf == c[j].cpf){
            cout << "\n DADOS ENCONTRADOS \n ";
 
             cout << "\n     CODIGO:   " << +1 << endl;
@@ -99,39 +85,45 @@ void exibirCliente(Cliente cadastro[]){
     }
 }
 
-
-
 int main(){
-    int opc, i= 0;
+
+    setlocale(LC_ALL,"portuguese");
+    
+    string cpfBusca;
+    int total = 0;
+    int opc;
     Cliente cad[50];
 
     do{
-        cout << "\n SISTEMA CADASTRO \n\n 1 - CADASTRAR CLIENTE\n 2 - EXIBIR CLIENTE      **** 3 p/ SAIR";
+        cout << "\n SISTEMA CADASTRO \n\n 1 - CADASTRAR CLIENTE\n 2 - EXIBIR CLIENTE\n 3 - BUSCAR POR CPF \n 4 - SAIR"<< endl;
 
         cout << "\n\n Digite a opção:     ";
         cin >> opc;
 
         switch (opc){
             case 1 :
-                cad[i].cadastrarCliente();
+                cad[i] = cadastrarCliente();
                 i++;
+                total++;
                 break;
             
                 case 2:
-                cout << "EXIBIR CLIENTES";
-                for (int j = 0; j < cont; j++){
-                    cad[j].print(j+1);
-                }
-                
-                   
+                    exibirCliente(cad);
                     break;
-                cout << "\n SISTEMA CADASTRO \n\n 1 - CADASTRAR CLIENTE\n 2 - EXIBIR CLIENTE     **** 3 p/ SAIR";
-            
-    
+                case 3:
+                    cout << "Digite o CPF: ";
+                    //armazena o valor do cpf inserido
+                    cin >> cpfBusca;
+                    //a negação da função(true)
+                    if (!buscarPorCpf(cad,i,cpfBusca)){
+                        cout << "Esse cliente não está cadastrado."<< endl;
+                    };
+                    break;
+ 
         }
     }
-    while (opc != 3);
-
-   
+    while (opc != 4);
+    
+    
 
 }
