@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+
+const int MAX = 50;
+typedef int tipoElemento;
+
+struct listaSequencial{
+    int n;
+    tipoElemento A[MAX];
+};
+
+void inicializaLista(listaSequencial &lista) {
+    lista.n = 0; // inicializa a lista vazia
+}
+
+bool listaVazia(const listaSequencial &lista) {
+    return (lista.n == 0);
+}
+
+bool listaCheia(const listaSequencial &lista) {
+    return (lista.n == MAX);
+}
+
+int tamanhoLista(const listaSequencial &lista) {
+    return lista.n;
+}
+
+int fimLista(const listaSequencial &lista) {
+    return lista.n;
+}
+
+bool inserirElemento(listaSequencial &lista, tipoElemento num, int i){
+    // se listaCheia retornar true, a lista está cheia
+    if (listaCheia(lista)){
+        //retorna falso se a lista estiver cheia para impedir a inserção 
+        //de novos elementos
+        return false;
+    }
+//verifica se o indice é menor que 0 ou maior que o número de elementos da lista
+    if (i < 0 || i > lista.n){
+        return false;
+    }
+
+    /*  1 Inicialização -  q = lista.n -1
+        2 Condição - q >= i
+        3 Decremento - q--  */
+   
+    // desloca elementos para a direita
+    // incia em lista.n -1 (último elemento)
+    // quando a lista estiver vazia, sairá do laço imediatamente
+    for (int q = lista.n - 1; q >= i; q--){
+        lista.A[q+1] = lista.A[q];
+    }
+    
+    lista.A[i] = num; // insere o novo elemento na posição i(posição desejada)
+    lista.n++; // incrementa o número de elementos da lista
+    return true; // retorna verdadeiro indicando que a inserção foi bem sucedida
+    
+    
+}
+int main() {
+    listaSequencial lista;
+    //recebe a referência da lista criada
+    inicializaLista(lista);
+
+    inserirElemento(lista, 10, 0);
+    inserirElemento(lista, 20, 1);
+    inserirElemento(lista, 15, 1); // insere 15 entre 10 e 20
+
+    //imprime os elementos da lista
+    cout << "Elementos da lista: ";
+    for (int i = 0; i < lista.n; i++) {
+        cout << lista.A[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
