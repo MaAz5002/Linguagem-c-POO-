@@ -10,8 +10,7 @@ class Cliente{
 
     public:
         void set_nome(string n){nome = n;}
-        string get_n
-        ome(){return nome;}
+        string get_nome(){return nome;}
         void set_email(string e){email = e;}
         string get_email(){return email;}
         void set_cpf(string cpf){this->cpf = cpf;}
@@ -21,8 +20,7 @@ class Cliente{
         bool validarCpf(string cpf);
         void print(int indice);//declaração da função
         Cliente cadastrarCliente();//declaração da função
-        bool buscarPorCpf(Cliente c[], int total);
-        void exibirCliente(Cliente cadastro[]);
+
 
 };
 
@@ -40,6 +38,8 @@ bool Cliente::validarCpf(string cpf){
 void Cliente::print(int indice){
     cout << "\nCodigo ...........: "<< indice;
     cout << "\nNome ...........: "<< nome<< endl;
+    cout << "\nEmail ...........: "<< email<< endl;
+    cout << "\nCpf ...........: "<< cpf<< endl;
 }
 
 
@@ -66,36 +66,23 @@ Cliente Cliente::cadastrarCliente(){
     
 }
 
-bool buscarPorCpf(Cliente c[],int total){
-
-    for (int j = 0; j < 10; j++){
-        if (numCpf == c[j].get_cpf){
-           cout << "\n DADOS ENCONTRADOS \n ";
-
-            cout << "\n     CODIGO:   " << +1 << endl;
-            cout << "\nNome ...........: "<< c[j].nome << endl;
-            cout << "\nEmail ...........: "<< c[j].email<< endl;
-            cout << "\nCPF ...........: "<< c[j].cpf << endl;
+bool buscarPorCpf(Cliente c[], int total, string numCpf) {
+    for (int j = 0; j < total; j++) {
+        if (numCpf == c[j].get_cpf()) {
+            cout << "\n=== DADOS ENCONTRADOS ===\n";
+            c[j].print(j + 1);
             return true;
-
-        } 
+        }
     }
+    cout << "\nCPF não encontrado!\n";
     return false;
-    
-
 }
 
-void exibirCliente(Cliente cadastro[]){
-    cout << "\n Exibição de Cadastro Cliente   \n" << endl;
-
-    for (int j=0;j<cont;j++){
-
-        cout << "\n     CODIGO:   " << j+1 << endl;
-        cout << "\nNome ...........: "<< cadastro[j].nome << endl;
-        cout << "\nEmail ...........: "<< cadastro[j].email<< endl;
-        cout << "\nCPF ...........: "<< cadastro[j].cpf << endl;
-         
-
+void exibirClientes(Cliente cadastro[], int total) {
+    cout << "\n=== Exibição de Clientes Cadastrados ===\n";
+    for (int j = 0; j < total; j++) {
+        cadastro[j].print(j + 1);
+        cout << "-----------------------------\n";
     }
 }
 
